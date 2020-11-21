@@ -5,7 +5,7 @@
 class Game {
   constructor() {
     this.missed = 0
-    this.phrases = ["When in Rome, Do as the Romans Do.", "If at first you don't succede, try, try again.", "Life is like a box of chocolates, try, try again ... enjoy!", "Life is what you make it.", "Programming is fun, if you don't think Abbot and Costello are funny."]
+    this.phrases = this.createPhrases()
     /**
      * This is the Phrase object that’s currently in play.
      * The initial value is null.
@@ -38,7 +38,7 @@ class Game {
    * create phrases for the game and return an array.
    */
   createPhrases() {
-    //this.phrases.push([])
-    //return this.phrases
+    const phraseArray = ["When in Rome, Do as the Romans Do.", "If at first you don't succede, try, try again.", "Life is like a box of chocolates, try, try again ... enjoy!", "Life is what you make it.", "Programming is fun, if you don't think Abbot and Costello are funny."]
+    this.phrases.push(phraseArray)
   }
 }
