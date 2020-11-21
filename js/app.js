@@ -9,3 +9,7 @@ const game = new Game()
 //console.log(phrase.phrase)
 //console.log(`Phrase - phrase: ${phrase.phrase}`)
 //console.log(game)
+
+game.phrases.forEach((phrase, index) => {
+  console.log(`Phrase ${index} - phrase: ${phrase.phrase}`)
+})
