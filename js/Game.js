@@ -39,6 +39,6 @@ class Game {
    */
   createPhrases() {
     const phraseArray = ["When in Rome, Do as the Romans Do.", "If at first you don't succede, try, try again.", "Life is like a box of chocolates, try, try again ... enjoy!", "Life is what you make it.", "Programming is fun, if you don't think Abbot and Costello are funny."]
-    this.phrases.push(phraseArray)
+    return this.phrases.push(phraseArray)
   }
 }
