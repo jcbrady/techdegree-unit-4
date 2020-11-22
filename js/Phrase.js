@@ -3,10 +3,8 @@
  * Phrase.js */
 
 class Phrase {
-  constructor(phrase, phrase1, phrase2) {
+  constructor(phrase) {
     this.phrase = phrase.toLowerCase()
-    this.phrase1 = phrase1.toLowerCase()
-    this.phrase2 = phrase2.toLowerCase()
   }
 
   /**
