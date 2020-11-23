@@ -5,8 +5,10 @@
 class Game {
   constructor() {
     this.missed = 0
-    this.phrases = ["Life is like a box of chocolates, try, try again ... enjoy!", "Life is what you make it.", "There's a Snake in my Boots!", "Up, up and Away!", "Roll the Dice!"]
-    //this.createPhrases()
+    this.phrases = this.createPhrases()
+    //[new Phrase("Life is like a box of Chocolates."), new Phrase("The rain in Spain Falls mainly on the plains."), new Phrase("The Early Bird Gets the Worm")]
+    //["Life is like a box of chocolates, try, try again ... enjoy!", "Life is what you make it.", "There's a Snake in my Boots!", "Up, up and Away!", "Roll the Dice!"]
+
     /**
      * This is the Phrase object that’s currently in play.
      * The initial value is null.
@@ -47,7 +49,7 @@ class Game {
    * create phrases for the game and return an array.
    */
   createPhrases() {
-    //const phraseArray = [new Phrase("When in Rome, Do as the Romans Do."), new Phrase("If at first you don't succede, try, try again."), new Phrase("Example 3"), new Phrase("Example 4"), new Phrase("Example 5")]
-    //return phraseArray
+    const phraseArray = [new Phrase("When in Rome, Do as the Romans Do."), new Phrase("If at first you don't succede, try, try again."), new Phrase("Example 3"), new Phrase("Example 4"), new Phrase("Example 5")]
+    return phraseArray
   }
 }

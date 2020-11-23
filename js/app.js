@@ -17,6 +17,6 @@ console.log(game.phrases)
 //   console.log(`Phrase ${index} - phrase: ${phrase.phrase}`)
 // })
 
-game.phrases.forEach((phr, index) => {
-  console.log(`Phrase ${index} - phrase: ${phr}`)
+game.phrases.forEach((newPhrase, index) => {
+  console.log(`Phrase ${index} - phrase: ${newPhrase.phrase}`)
 })
