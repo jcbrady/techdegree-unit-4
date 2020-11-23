@@ -29,14 +29,14 @@ class Game {
    * getRandomPhrase(): this method randomly retrieves one of the phrases stored
    * in the phrases array and returns it.
    */
+
   /**
    * Selects random phrase from phrases property
    * @return {Object} Phrase object chosen to be used
    */
   getRandomPhrase() {
-    const randomNum = Math.random(2) //this.phrases.length)
-    //randomNum.ceil()
-    return randomNum
+    const randomNum = Math.floor(Math.random() * this.phrases.length)
+    return this.phrases[randomNum]
   }
   /**
    * controls most of the game logic. (see notes)
@@ -49,7 +49,7 @@ class Game {
    * create phrases for the game and return an array.
    */
   createPhrases() {
-    const phraseArray = [new Phrase("When in Rome, Do as the Romans Do."), new Phrase("If at first you don't succede, try, try again."), new Phrase("Example 3"), new Phrase("Example 4"), new Phrase("Example 5")]
+    const phraseArray = [new Phrase("Phrase 1"), new Phrase("Phrase 2"), new Phrase("Phrase 3"), new Phrase("Phrase 4"), new Phrase("Phrase 5")]
     return phraseArray
   }
 }
