@@ -2,7 +2,7 @@
  * Project 4 - OOP Game App
  * app.js */
 
-const phrase = new Phrase()
+//const phrase = new Phrase("hello")
 const game = new Game()
 
 // console.log(phrase)
@@ -13,6 +13,10 @@ const game = new Game()
 
 console.log(game.phrases)
 
-game.phrases.forEach((phrase, index) => {
-  console.log(`Phrase ${index} - phrase: ${phrase}`)
+// game.phrases.forEach((phrase, index) => {
+//   console.log(`Phrase ${index} - phrase: ${phrase.phrase}`)
+// })
+
+game.phrases.forEach((phr, index) => {
+  console.log(`Phrase ${index} - phrase: ${phr}`)
 })

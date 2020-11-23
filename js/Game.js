@@ -5,7 +5,8 @@
 class Game {
   constructor() {
     this.missed = 0
-    this.phrases = this.createPhrases()
+    this.phrases = ["Life is like a box of chocolates, try, try again ... enjoy!", "Life is what you make it.", "There's a Snake in my Boots!", "Up, up and Away!", "Roll the Dice!"]
+    //this.createPhrases()
     /**
      * This is the Phrase object that’s currently in play.
      * The initial value is null.
@@ -26,7 +27,15 @@ class Game {
    * getRandomPhrase(): this method randomly retrieves one of the phrases stored
    * in the phrases array and returns it.
    */
-  getRandomPhrase() {}
+  /**
+   * Selects random phrase from phrases property
+   * @return {Object} Phrase object chosen to be used
+   */
+  getRandomPhrase() {
+    const randomNum = Math.random(2) //this.phrases.length)
+    //randomNum.ceil()
+    return randomNum
+  }
   /**
    * controls most of the game logic. (see notes)
    */
@@ -38,7 +47,7 @@ class Game {
    * create phrases for the game and return an array.
    */
   createPhrases() {
-    const phraseArray = new Phrase()
-    return (phraseArray.phrase = ["When in Rome, Do as the Romans Do.", "If at first you don't succede, try, try again.", "Life is like a box of chocolates, try, try again ... enjoy!", "Life is what you make it.", "Programming is fun, if you don't think Abbot and Costello are funny."])
+    //const phraseArray = [new Phrase("When in Rome, Do as the Romans Do."), new Phrase("If at first you don't succede, try, try again."), new Phrase("Example 3"), new Phrase("Example 4"), new Phrase("Example 5")]
+    //return phraseArray
   }
 }
