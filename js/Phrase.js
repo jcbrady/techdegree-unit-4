@@ -10,7 +10,28 @@ class Phrase {
   /**
    * adds letter placeholders to the display when the game starts.
    */
-  addPhraseToDisplay() {}
+  addPhraseToDisplay() {
+    // ?
+    const game = new Game()
+    const newPhrase = game.getRandomPhrase()
+    const letters = newPhrase.phrase.split("") // ? creates array[l, e, t, t, e, r, s]
+    const ul = document.querySelector("#phrase ul")
+
+    // use forEach loop or a for of loop instead?
+    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of#Examples
+    for (let i = 0; i < letters.length; i++) {
+      let li = document.createElement("li")
+      if (letters === " ") {
+        li.setAttribute("class", `hide space ${letters[i]}`)
+        li.textContent = letters[i]
+      } else {
+        li.setAttribute("class", `hide letter ${letters[i]}`)
+        li.textContent = letters[i]
+      }
+      ul.appendChild(li)
+    }
+    return `newPhrase: ${newPhrase.phrase} letters: ${letters}`
+  }
 
   /**
    * checks to see if the letter selected by the player matches a letter in the phrase.
