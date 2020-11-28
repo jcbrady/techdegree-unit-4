@@ -24,7 +24,12 @@ class Game {
    * adds phrase to the board by calling the addPhraseToDisplay() method
    * (on the active Phrase object).
    */
-  startGame() {}
+  startGame() {
+    this.activePhrase = this.getRandomPhrase().addPhraseToDisplay()
+    // hide overlay div
+    document.getElementById("overlay").classList.add("hide")
+    document.getElementById("overlay").classList.remove("start")
+  }
   /**
    * getRandomPhrase(): this method randomly retrieves one of the phrases stored
    * in the phrases array and returns it.
