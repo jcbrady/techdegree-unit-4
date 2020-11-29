@@ -25,10 +25,10 @@ class Game {
    * (on the active Phrase object).
    */
   startGame() {
-    this.activePhrase = this.getRandomPhrase().addPhraseToDisplay()
+    this.activePhrase = this.getRandomPhrase()
+    this.activePhrase.addPhraseToDisplay()
     // hide overlay div
-    document.getElementById("overlay").classList.add("hide")
-    document.getElementById("overlay").classList.remove("start")
+    document.getElementById("overlay").style.display = "none"
   }
   /**
    * getRandomPhrase(): this method randomly retrieves one of the phrases stored
@@ -54,7 +54,7 @@ class Game {
    * create phrases for the game and return an array.
    */
   createPhrases() {
-    const phraseArray = [new Phrase("Phrase 1"), new Phrase("Phrase 2"), new Phrase("Phrase 3"), new Phrase("Phrase 4"), new Phrase("Phrase 5")]
+    const phraseArray = [new Phrase("Phrase 1 (one)"), new Phrase("Phrase Two"), new Phrase("Phrase Three"), new Phrase("Phrase Four"), new Phrase("Phrase five (yes 5)")]
     return phraseArray
   }
 }
