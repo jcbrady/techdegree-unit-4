@@ -6,8 +6,6 @@ class Game {
   constructor() {
     this.missed = 0
     this.phrases = this.createPhrases()
-    //[new Phrase("Life is like a box of Chocolates."), new Phrase("The rain in Spain Falls mainly on the plains."), new Phrase("The Early Bird Gets the Worm")]
-    //["Life is like a box of chocolates, try, try again ... enjoy!", "Life is what you make it.", "There's a Snake in my Boots!", "Up, up and Away!", "Roll the Dice!"]
 
     /**
      * This is the Phrase object that’s currently in play.

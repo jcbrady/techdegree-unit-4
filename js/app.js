@@ -37,6 +37,12 @@
 // game.getRandomPhrase().addPhraseToDisplay()
 // console.log(game.getRandomPhrase()) // this will return a new Phrase object with the phrase as an argument.
 
-const game = new Game()
-game.startGame()
-console.log(`Active Phrase - phrase: ${game.activePhrase.phrase}`)
+// const game = new Game()
+// game.startGame()
+// console.log(`Active Phrase - phrase: ${game.activePhrase.phrase}`)
+
+//const game = new Game()
+document.getElementsByTagName("button")[0].addEventListener("click", function () {
+  const game = new Game()
+  game.startGame()
+})
