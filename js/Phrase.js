@@ -16,7 +16,6 @@ class Phrase {
     const newPhrase = game.getRandomPhrase()
     const letters = newPhrase.phrase.split("") // ? creates array[l, e, t, t, e, r, s]
     const ul = document.querySelector("#phrase ul")
-
     // use forEach loop or a for of loop instead?
     // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of#Examples
     for (let i = 0; i < letters.length; i++) {
@@ -30,17 +29,29 @@ class Phrase {
       }
       ul.appendChild(li)
     }
-    return `newPhrase: ${newPhrase.phrase} letters: ${letters}`
+    return letters
+    //return `newPhrase: ${newPhrase.phrase} letters: ${letters}`
   }
 
   /**
    * checks to see if the letter selected by the player matches a letter in the phrase.
    */
-  checkLetter() {}
+  checkLetter(letter) {
+    letter = document.getElementById("qwerty").addEventListener("click", function (e) {
+      let letterKey = e.target.innerText
+      console.log(letterKey) // button letter
+
+      console.log(this.addPhraseToDisplay) // undefined
+      //console.log(this.addPhraseToDisplay()) // error
+
+      // if (e.target.innerText === array method to search any letter in the array) {}
+    })
+  }
   /**
-   * reveals the letter(s) on the board that matches the player's selection. To reveal the matching letter(s), select all of the letter DOM elements that
+   * reveals the letter(s) on the board that matches the player's selection. To reveal the
+   * matching letter(s), select all of the letter DOM elements that
    * have a CSS class name that matches the selected letter and replace each selected
    * element's hide CSS class with the show CSS class.
    */
-  showMatchedLetter() {}
+  showMatchedLetter(letter) {}
 } // end phrase class object
