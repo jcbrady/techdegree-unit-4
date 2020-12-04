@@ -41,8 +41,8 @@
 // game.startGame()
 // console.log(`Active Phrase - phrase: ${game.activePhrase.phrase}`)
 
-//const game = new Game()
+let game = new Game()
+
 document.getElementsByTagName("button")[0].addEventListener("click", function () {
-  const game = new Game()
   game.startGame()
 })
