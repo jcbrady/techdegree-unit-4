@@ -37,10 +37,11 @@ class Phrase {
    * checks to see if the letter selected by the player matches a letter in the phrase.
    */
   checkLetter(letter) {
+    console.log(this) // logs what's in this.phrase
     letter = document.getElementById("qwerty").addEventListener("click", function (e) {
       let letterKey = e.target.innerText
       console.log(letterKey) // button letter
-
+      console.log(this) // logs qwerty id element
       console.log(this.addPhraseToDisplay) // undefined
       //console.log(this.addPhraseToDisplay()) // error
 
