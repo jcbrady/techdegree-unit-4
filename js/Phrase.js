@@ -11,13 +11,11 @@ class Phrase {
    * adds letter placeholders to the display when the game starts.
    */
   addPhraseToDisplay() {
-    // ?
-    const game = new Game()
-    const newPhrase = game.getRandomPhrase()
-    const letters = newPhrase.phrase.split("") // ? creates array[l, e, t, t, e, r, s]
+    const letters = this.phrase.split("") // ? creates array[l, e, t, t, e, r, s]
     const ul = document.querySelector("#phrase ul")
     // use forEach loop or a for of loop instead?
     // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of#Examples
+
     for (let i = 0; i < letters.length; i++) {
       let li = document.createElement("li")
       if (letters === " ") {
