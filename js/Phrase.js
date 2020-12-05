@@ -20,6 +20,8 @@ class Phrase {
       let li = document.createElement("li")
       if (letters[i] === " ") {
         li.setAttribute("class", `space ${letters[i]}`)
+      } else {
+        li.setAttribute("class", `hide letter ${letters[i]}`)
       }
       ul.appendChild(li)
     }
