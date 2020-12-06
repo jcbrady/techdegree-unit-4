@@ -6,7 +6,6 @@ class Game {
   constructor() {
     this.missed = 0
     this.phrases = this.createPhrases()
-
     /**
      * This is the Phrase object that’s currently in play.
      * The initial value is null.
@@ -56,7 +55,21 @@ class Game {
    * Checks for winning move
    * @return {boolean} True if game has been won, false if game wasn't won
    */
-  checkForWin() {}
+  checkForWin() {
+    // 2 ways to check
+    // if all letters have the "show" class or if there are NO "hide" classes left
+    // or if all of the number of letters in the phrase array have been used, use a counter?
+    console.log(this.activePhrase)
+    // console.log(this.activePhrase.phrase.length)
+    const checkHideClass = document.getElementsByClassName("hide")
+    console.log(checkHideClass)
+    // if there are no items in the DOM array of objects
+    if (checkHideClass.length === 0) {
+      return true // player wins game
+    } else {
+      return false
+    }
+  }
   /**
    * Displays game over message
    * @param {boolean} gameWon - Whether or not the user won the game
@@ -66,7 +79,7 @@ class Game {
    * create phrases for the game and return an array.
    */
   createPhrases() {
-    const phraseArray = [new Phrase("Phraser 1 (one)"), new Phrase("Phraser Two"), new Phrase("Phraser Three"), new Phrase("Phraser Four"), new Phrase("Phraser five (yes 5)")]
+    const phraseArray = [new Phrase("one"), new Phrase("Two"), new Phrase("Phraser Three"), new Phrase("Phraser Four"), new Phrase("Phraser five yes 5")]
     return phraseArray
   }
 }
