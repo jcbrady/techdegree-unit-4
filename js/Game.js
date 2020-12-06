@@ -50,11 +50,43 @@ class Game {
    * Removes a life from the scoreboard
    * Checks if player has remaining lives and ends game if player is out
    */
-  removeLife() {}
+  removeLife() {
+    console.log(this.missed)
+    if (this.missed < 5) {
+      const scoreboard = document.getElementById("scoreboard")
+      const imageElements = scoreboard.getElementsByTagName("img")
+      let currentImage = imageElements[this.missed] // increment array value with missed
+      //console.log(currentImage.src.includes("liveHeart.png")) // true
+      if (currentImage.src.includes("liveHeart.png")) {
+        //console.log(currentImage)
+        //console.log(currentImage.src)
+        let lostHeart = currentImage.src.replace("liveHeart.png", "lostHeart.png")
+        currentImage.src = lostHeart
+        //console.log((currentImage.src = lostHeart))
+        //console.log(lostHeart)
+        //console.log(imageElements[this.missed])
+        //console.log("lostHeart (above), currentImage (below)")
+
+        //return (currentImage = lostHeart)
+        //console.log(currentImage)
+      }
+    } else {
+      //this.missed = 0
+      this.gameOver()
+    }
+
+    // for (let imageElement of imageElements) {
+    //   console.log(imageElement.src)
+    //   imageElement.src = "../images/lostHeart.png"
+    //   console.log(imageElement.src)
+    // }
+    this.missed++
+  }
   /**
    * Checks for winning move
    * @return {boolean} True if game has been won, false if game wasn't won
    */
+
   checkForWin() {
     // 2 ways to check
     // if all letters have the "show" class or if there are NO "hide" classes left
@@ -74,7 +106,9 @@ class Game {
    * Displays game over message
    * @param {boolean} gameWon - Whether or not the user won the game
    */
-  gameOver(gameWon) {}
+  gameOver(gameWon) {
+    console.log("Game Over from the method")
+  }
   /**
    * create phrases for the game and return an array.
    */
