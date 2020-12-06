@@ -45,15 +45,16 @@ class Phrase {
   showMatchedLetter(letter) {
     console.log(`test communication ${letter}`)
     //
-    if (this.checkLetter) {
-      let match
-      for (let i = 0; i < this.phrase.length; i++) {
-        match = document.getElementsByClassName(`"hide letter ${letter}"`)[i]
-        console.log(match)
-        //match.className = `"show letter ${letter}"`)[i]
-        //match.textContent(letter)
-      }
-      return match
+    //if (this.checkLetter) {
+    let match
+    for (let i = 0; i < this.phrase.length; i++) {
+      match = document.getElementsByClassName(letter)[i]
+      // classList, className, and setAttribute(), all work but throw an error saying it's undefined.
+      match.setAttribute("class", `show letter ${letter}`)
+      match.textContent = letter
+
+      console.log(match)
     }
+    // }
   }
 } // end phrase class object

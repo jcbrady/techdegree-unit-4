@@ -66,7 +66,7 @@ class Game {
    * create phrases for the game and return an array.
    */
   createPhrases() {
-    const phraseArray = [new Phrase("Phrase 1 (one)"), new Phrase("Phrase Two"), new Phrase("Phrase Three"), new Phrase("Phrase Four"), new Phrase("Phrase five (yes 5)")]
+    const phraseArray = [new Phrase("Phraser 1 (one)"), new Phrase("Phraser Two"), new Phrase("Phraser Three"), new Phrase("Phraser Four"), new Phrase("Phraser five (yes 5)")]
     return phraseArray
   }
 }
