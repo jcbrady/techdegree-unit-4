@@ -97,7 +97,7 @@ class Game {
     console.log(checkHideClass)
     // if there are no items in the DOM array of objects
     if (checkHideClass.length === 0) {
-      return true // player wins game
+      return this.gameOver(true) // player wins game
     } else {
       return false
     }
@@ -108,6 +108,17 @@ class Game {
    */
   gameOver(gameWon) {
     console.log("Game Over from the method")
+    document.getElementById("overlay").style.display = "block"
+    let gameOverMessage = document.getElementById("game-over-message")
+    const changeBG = document.querySelector("#overlay")
+    console.log(changeBG)
+    if (gameWon) {
+      gameOverMessage.textContent = "You Win!"
+      changeBG.style.backgroundColor = "green"
+    } else {
+      gameOverMessage.textContent = "Oh Well, Better Luck Next Time."
+      changeBG.style.backgroundColor = "maroon"
+    }
   }
   /**
    * create phrases for the game and return an array.

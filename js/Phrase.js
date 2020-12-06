@@ -56,5 +56,6 @@ class Phrase {
       console.log(match)
     }
     // }
+    // checkForWin() ???
   }
-} // end phrase class object
+} // end phrase class
