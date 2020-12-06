@@ -3,7 +3,7 @@
  * app.js */
 
 ////// TESTS ///////
-const phrase = new Phrase("hello my name is 'test'")
+// const phrase = new Phrase("hello my name is 'test'")
 // const game = new Game()
 //
 // console.log(phrase)
@@ -17,8 +17,8 @@ const phrase = new Phrase("hello my name is 'test'")
 // })
 
 // const logPhrase = function (phrase) {
-// console.log(`Phrase: `, phrase)
-// console.log(`Phrase - phrase: `, phrase.phrase)
+//   console.log(`Phrase: `, phrase)
+//   console.log(`Phrase - phrase: `, phrase.phrase)
 // }
 // const game = new Game()
 // logPhrase(game.getRandomPhrase())

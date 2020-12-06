@@ -33,7 +33,7 @@ class Phrase {
    * checks to see if the letter selected by the player matches a letter in the phrase.
    */
   checkLetter(letter) {
-    console.log("letter")
+    console.log("letter: " + letter)
     return this.phrase.includes(letter)
   }
   /**
