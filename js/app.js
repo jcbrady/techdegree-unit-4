@@ -3,12 +3,11 @@
  * app.js */
 
 ////// TESTS ///////
-// const phrase = new Phrase("hello my name is ...")
+const phrase = new Phrase("hello my name is 'test'")
 // const game = new Game()
 //
 // console.log(phrase)
 // console.log(phrase.phrase)
-// console.log(phrase.phrase1)
 // console.log(`Phrase - phrase: ${phrase.phrase}`)
 // console.log(game)
 // console.log(game.phrases)
@@ -41,8 +40,12 @@
 // game.startGame()
 // console.log(`Active Phrase - phrase: ${game.activePhrase.phrase}`)
 
+// game global, let indicates an ability to change
 let game
-document.getElementsByTagName("button")[0].addEventListener("click", function () {
+document.getElementById("btn__reset").addEventListener("click", function () {
+  // new game instance created after button is clicked
   game = new Game()
   game.startGame()
 })
+
+console.log("test")

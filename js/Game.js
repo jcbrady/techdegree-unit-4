@@ -24,6 +24,7 @@ class Game {
    */
   startGame() {
     this.activePhrase = this.getRandomPhrase()
+    // addPhraseToDisplay is in the Phrase class
     this.activePhrase.addPhraseToDisplay()
     // hide overlay div
     document.getElementById("overlay").style.display = "none"
