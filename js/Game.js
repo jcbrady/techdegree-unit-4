@@ -44,7 +44,22 @@ class Game {
   /**
    * controls most of the game logic. (see notes)
    */
-  handleInteraction() {}
+  handleInteraction(button) {
+    console.log(button)
+    console.log(button.textContent)
+    // PSEUDO CODE: if checkletter == active phrase letter add show class
+    // else subtract a point
+    let key = this.activePhrase.checkLetter(button.textContent)
+    console.log(key)
+    if (key) {
+      this.activePhrase.showMatchedLetter(button.textContent)
+      if (this.checkForWin()) {
+        this.gameOver(true)
+      }
+    } else {
+      this.removeLife()
+    }
+  }
   /**
    * Increases the value of the missed property
    * Removes a life from the scoreboard
@@ -52,7 +67,7 @@ class Game {
    */
   removeLife() {
     console.log(this.missed)
-    if (this.missed < 5) {
+    if (this.missed < 4) {
       const scoreboard = document.getElementById("scoreboard")
       const imageElements = scoreboard.getElementsByTagName("img")
       let currentImage = imageElements[this.missed] // increment array value with missed
@@ -124,7 +139,7 @@ class Game {
    * create phrases for the game and return an array.
    */
   createPhrases() {
-    const phraseArray = [new Phrase("one"), new Phrase("Two"), new Phrase("Phraser Three"), new Phrase("Phraser Four"), new Phrase("Phraser five yes 5")]
+    const phraseArray = [new Phrase("one"), new Phrase("Two"), new Phrase("Phraser Three"), new Phrase("Phraser Four"), new Phrase("Phraser fiver")]
     return phraseArray
   }
 }

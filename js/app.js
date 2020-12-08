@@ -52,8 +52,8 @@ document.getElementById("btn__reset").addEventListener("click", function () {
 const letterButton = document.querySelectorAll(".key")
 for (let i = 0; i < letterButton.length; i++) {
   letterButton[i].addEventListener("click", function (e) {
-    console.log(e.target)
-    console.log("* Note: call handleInteraction()")
+    //console.log(e.target)
+    game.handleInteraction(e.target)
   })
 }
 
