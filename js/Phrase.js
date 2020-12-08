@@ -44,17 +44,37 @@ class Phrase {
    */
   showMatchedLetter(letter) {
     console.log(`test communication ${letter}`)
-    //
-    //if (this.checkLetter) {
-    let match
-    for (let i = 0; i < this.phrase.length; i++) {
-      match = document.getElementsByClassName(letter)[i]
-      // classList, className, and setAttribute(), all work but throw an error saying it's undefined.
-      match.setAttribute("class", `show letter ${letter}`)
-      match.textContent = letter
 
-      console.log(match)
-    }
+    let match = document.getElementById("phrase").firstElementChild // ul element
+    // this has to be a loop to check for multiple letter matches
+    // otherwise it will just get the first match
+    for (let i = 0; i < this.phrase.length; i++) {
+      let phraseMatch = match.getElementsByClassName(letter)[i]
+      // console.log(phraseMatch)
+      // if the letter is in the class list, show it
+      if (phraseMatch) {
+        phraseMatch.classList = `show letter ${letter}`
+        phraseMatch.textContent = letter
+      } // end if
+    } // end for loop
+
+    //phraseMatch.classList.remove("hide")
+
+    //
+    // for (let i = 0; i < this.phrase.length; i++) {
+    //   phraseMatch[i]
+    // }
+
+    // OLD FOR LOOP
+    // let match
+    // for (let i = 0; i < this.phrase.length; i++) {
+    //   match = document.getElementsByClassName(letter)[i]
+    //   // classList, className, and setAttribute(), all work but throw an error saying it's undefined.
+    //   match.setAttribute("class", `show letter ${letter}`)
+    //   match.textContent = letter
+
+    //   console.log(match)
+    // }
     // }
     // checkForWin() ???
   }

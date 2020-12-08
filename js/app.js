@@ -27,7 +27,7 @@
 // logPhrase(game.getRandomPhrase())
 // logPhrase(game.getRandomPhrase())
 
-////////// Interesting, I'm surprised you can put the .addPhraseToDisplay() and it works.
+////////// *Notes: I'm surprised you can put the .addPhraseToDisplay() and it works.
 ////////// getRandomPhrase() - creates a random number, which returns this.phrases[number] (the game property),
 ////////// this.phrases is an array of phrases created by calling createPhrases(). (through function hoisting,
 ////////// this has already happened when the game object gets contstructed). The reason it's accessible with
@@ -48,4 +48,30 @@ document.getElementById("btn__reset").addEventListener("click", function () {
   game.startGame()
 })
 
-console.log("test")
+// add eventListeners to key buttons
+const letterButton = document.querySelectorAll(".key")
+for (let i = 0; i < letterButton.length; i++) {
+  letterButton[i].addEventListener("click", function (e) {
+    console.log(e.target)
+    console.log("* Note: call handleInteraction()")
+  })
+}
+
+// event delegation method
+// document.getElementById("qwerty").addEventListener("click", function (e) {
+//   e.preventDefault
+//   const keyrow = document.getElementsByClassName("keyrow")
+//   for (let i = 0; i < keyrow.length; i++) {
+//     console.log(keyrow[i].children)
+//     console.log(keyrow[i].getAttribute("class"))
+//   }
+//   if (e.target === keyrow) {
+//     e.preventDefault
+//     console.log("keyrow")
+//     console.log(e.target)
+//   } else {
+//     console.log("else")
+//     console.log(e.target)
+//   }
+//   console.log(keyrow)
+// })
