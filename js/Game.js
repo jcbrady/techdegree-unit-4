@@ -137,7 +137,7 @@ class Game {
     document.getElementById("overlay").style.display = "block"
     let gameOverMessage = document.getElementById("game-over-message")
     const changeBG = document.querySelector("#overlay")
-    console.log(changeBG)
+
     if (gameWon) {
       gameOverMessage.textContent = "You Win!"
       changeBG.style.backgroundColor = "green"
@@ -145,12 +145,24 @@ class Game {
       gameOverMessage.textContent = "Oh Well, Better Luck Next Time."
       changeBG.style.backgroundColor = "maroon"
     }
+
+    // clean up the DOM (game board)
+    let prevPhrase = document.getElementById("phrase").firstElementChild // ul
+    let qwertyBtns = document.getElementsByTagName()
+    console.log(prevPhrase) // ul
+    let liItems = prevPhrase.children // nodeList Array of li items
+    console.log(liItems)
+    prevPhrase.remove(liItems)
+    // is a loop needed?
+    //prevPhrase.removeChild("li")
+    //prevPhrase.removeChild(liItems)
+    //liItems.display = "none"
   }
   /**
    * create phrases for the game and return an array.
    */
   createPhrases() {
-    const phraseArray = [new Phrase("one"), new Phrase("Two"), new Phrase("Phraser Three"), new Phrase("Phraser Four"), new Phrase("Phraser fiver")]
+    const phraseArray = [new Phrase("One"), new Phrase("Two"), new Phrase("Three"), new Phrase("Four"), new Phrase("five")]
     return phraseArray
   }
 }
