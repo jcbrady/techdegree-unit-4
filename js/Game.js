@@ -47,18 +47,29 @@ class Game {
   handleInteraction(button) {
     console.log(button)
     console.log(button.textContent)
-    // PSEUDO CODE: if checkletter == active phrase letter add show class
+    // PSEUDO CODE: if checkletter = active phrase letter, add show class
     // else subtract a point
+    //
+    //
+    //let keyDisabled = (checkLetter(button)
+    // call checkLetter method on the active phrase button that was clicked.
+    // if theres a match
     let key = this.activePhrase.checkLetter(button.textContent)
-    console.log(key)
+
     if (key) {
       this.activePhrase.showMatchedLetter(button.textContent)
+      button.classList = "chosen"
+      // if we matched, reveal the letter and check if the game is won, otherwise, lose a point
       if (this.checkForWin()) {
         this.gameOver(true)
       }
     } else {
+      // add the 'wrong' class
+      button.classList = "wrong"
       this.removeLife()
     }
+    // disable button that was clicked and add the relevant classes
+    button.disabled = true
   }
   /**
    * Increases the value of the missed property
@@ -109,7 +120,7 @@ class Game {
     console.log(this.activePhrase)
     // console.log(this.activePhrase.phrase.length)
     const checkHideClass = document.getElementsByClassName("hide")
-    console.log(checkHideClass)
+    //console.log(checkHideClass)
     // if there are no items in the DOM array of objects
     if (checkHideClass.length === 0) {
       return this.gameOver(true) // player wins game
