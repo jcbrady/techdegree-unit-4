@@ -147,11 +147,11 @@ class Game {
     }
 
     // clean up the DOM (game board)
-    let prevPhrase = document.getElementById("phrase").firstElementChild // ul
-    //console.log(prevPhrase) // ul
+    // empty out the list items
+    const prevPhrase = document.getElementById("phrase").firstElementChild // ul
     prevPhrase.innerHTML = ""
-    //
-    const keyReset = document.querySelectorAll(".keyrow") //array of keyrow divs with key buttons
+    // reset the buttons keys with nested for of loops
+    const keyReset = document.querySelectorAll(".keyrow") //Nodelist of keyrow divs with key buttons
     for (const items of keyReset) {
       let drillDown = items.children // HTMLCollection of button.key, button.wrong, & button.chosen
       for (const element of drillDown) {
@@ -159,49 +159,7 @@ class Game {
         element.removeAttribute("disabled")
       }
     }
-    // or with forEach
-    // keyReset.forEach(function (reset) {
-    //   console.log(reset.children)
-    //   reset.removeAttribute("disabled")
-    //   reset.className = "key"
-    // })
-    // or a for loop
-    // for (let i = 0; i < keyReset.length; i++) {
-    //   console.log(keyReset[i])
-    // }
-
-    // let wrongBtns = document.getElementsByClassName("wrong")
-    // console.log(wrongBtns)
-    // if (wrongBtns) {
-    //   for (const element of wrongBtns) {
-    //     element.className = "key"
-    //     element.removeAttribute("disabled")
-    //     //element.setAttribute("enabled", "enabled")
-    //     //console.log(element.classList)
-    //     //element.classList.remove("wrong")
-    //     //element.classList.add("key")
-    //     //wrongBtns.className.remove("wrong")
-    //     //wrongBtns.className.add("key")
-    //   }
-    // }
-    // for (const element of qwertyBtns) {
-    //   if (element.className === "wrong") {
-    //     console.log(element)
-    //   }
-    // console.log(element.className)
-    // }
-    // for (let i = 0; i < qwertyBtns.length; i++) {
-    //   qwertyBtns[i]
-    //   console.log(qwertyBtns[i])
-    // }
-
-    //let liItems = prevPhrase.children // nodeList Array of li items
-    //console.log(liItems)
-    //prevPhrase.remove(liItems)
-    // is a loop needed?
-    //prevPhrase.removeChild("li")
-    //prevPhrase.removeChild(liItems)
-    //liItems.display = "none"
+    // reset the hearts
   }
   /**
    * create phrases for the game and return an array.
