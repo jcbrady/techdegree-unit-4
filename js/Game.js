@@ -78,7 +78,7 @@ class Game {
    */
   removeLife() {
     console.log(this.missed)
-    if (this.missed < 4) {
+    if (this.missed <= 5) {
       const scoreboard = document.getElementById("scoreboard")
       const imageElements = scoreboard.getElementsByTagName("img")
       let currentImage = imageElements[this.missed] // increment array value with missed
@@ -146,11 +146,11 @@ class Game {
       changeBG.style.backgroundColor = "maroon"
     }
 
-    // clean up the DOM (game board)
-    // empty out the list items
+    // Clean up the DOM (game board)
+    // Empty out the list items
     const prevPhrase = document.getElementById("phrase").firstElementChild // ul
     prevPhrase.innerHTML = ""
-    // reset the buttons keys with nested for of loops
+    // Reset the buttons keys with nested for of loops
     const keyReset = document.querySelectorAll(".keyrow") //Nodelist of keyrow divs with key buttons
     for (const items of keyReset) {
       let drillDown = items.children // HTMLCollection of button.key, button.wrong, & button.chosen
@@ -159,7 +159,22 @@ class Game {
         element.removeAttribute("disabled")
       }
     }
-    // reset the hearts
+    // Reset the hearts
+    const hearts = document.getElementsByClassName("tries") // HTMLCollection array of li.tries
+    // loop through the hearts HTMLCollection array to get the img, then the src
+    for (let i = 0; i < hearts.length; i++) {
+      let img = hearts[i].children // HTMLCollection of 1 img element
+      let imgSrc = img[i].getAttribute("src") // seems to work BUT throws an ERROR
+      console.log(imgSrc) // logs the image source: ../images/lostHeart.png
+
+      if (imgSrc.includes("lostHeart.png")) {
+        let liveHeart = imgSrc.replace("lostHeart.png", "liveHeart.png")
+        imgSrc = liveHeart // switch images to liveHeart.png
+        console.log(liveHeart) // logs the liveHeart.png as expected
+        img.setAttribute("src", liveHeart)
+        console.log("true, url contains lostHeart")
+      }
+    }
   }
   /**
    * create phrases for the game and return an array.
