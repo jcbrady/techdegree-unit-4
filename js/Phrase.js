@@ -13,8 +13,6 @@ class Phrase {
   addPhraseToDisplay() {
     const letters = this.phrase.split("") // ? creates array[l, e, t, t, e, r, s]
     const ul = document.querySelector("#phrase ul")
-    // use forEach loop or a for of loop instead?
-    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of#Examples
 
     for (let i = 0; i < letters.length; i++) {
       let li = document.createElement("li")
@@ -26,14 +24,12 @@ class Phrase {
       ul.appendChild(li)
     }
     return letters
-    //return `newPhrase: ${newPhrase.phrase} letters: ${letters}`
   }
 
   /**
    * checks to see if the letter selected by the player matches a letter in the phrase.
    */
   checkLetter(letter) {
-    //console.log("letter: " + letter)
     return this.phrase.includes(letter)
   }
   /**
@@ -43,39 +39,16 @@ class Phrase {
    * element's hide CSS class with the show CSS class.
    */
   showMatchedLetter(letter) {
-    console.log(`test communication ${letter}`)
-
     let match = document.getElementById("phrase").firstElementChild // ul element
     // this has to be a loop to check for multiple letter matches
     // otherwise it will just get the first match
     for (let i = 0; i < this.phrase.length; i++) {
       let phraseMatch = match.getElementsByClassName(letter)[i]
-      // console.log(phraseMatch)
       // if the letter is in the class list, show it
       if (phraseMatch) {
         phraseMatch.classList = `show letter ${letter}`
         phraseMatch.textContent = letter
-      } // end if
-    } // end for loop
-
-    //phraseMatch.classList.remove("hide")
-
-    //
-    // for (let i = 0; i < this.phrase.length; i++) {
-    //   phraseMatch[i]
-    // }
-
-    // OLD FOR LOOP
-    // let match
-    // for (let i = 0; i < this.phrase.length; i++) {
-    //   match = document.getElementsByClassName(letter)[i]
-    //   // classList, className, and setAttribute(), all work but throw an error saying it's undefined.
-    //   match.setAttribute("class", `show letter ${letter}`)
-    //   match.textContent = letter
-
-    //   console.log(match)
-    // }
-    // }
-    // checkForWin() ???
+      }
+    }
   }
-} // end phrase class
+}

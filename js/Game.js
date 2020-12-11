@@ -28,16 +28,10 @@ class Game {
     // hide overlay div
     document.getElementById("overlay").style.display = "none"
 
-    // HACK bug fix
-    // BUG - last clicked key button from previous game is disabled in the next game
-    // this over rides it
-    const bugFix1 = document.getElementsByClassName("key")
-    for (let i = 0; i < bugFix1.length; i++) {
-      // console.log(i)
-      // console.log(bugFix1[i])
-      // bugFix1[i].className = "key" // if className resets all classes, why doesn't this reset it to key class?
-      bugFix1[i].disabled = false
-      //bugFix1[i].removeAttribute("disabled")
+    // reset fix - Resolves an issue with last element having disabled attribut on restart
+    const resetFix = document.getElementsByClassName("key")
+    for (let i = 0; i < resetFix.length; i++) {
+      resetFix[i].disabled = false
     }
   }
 
@@ -57,7 +51,6 @@ class Game {
    * check for a win and call the gameOver(true) if won, removeLife() if not won
    */
   handleInteraction(button) {
-    console.log(button)
     // Call checkLetter method on the active phrase button that was clicked.
     // returns a boolean. If theres a match, call showMatchedLetter
     let key = this.activePhrase.checkLetter(button.textContent)
@@ -74,9 +67,6 @@ class Game {
       this.removeLife()
     }
     // disable button that was clicked
-    // BUG FIX??? // restarting game leaves the last clicked button disabled!!!
-    // putting this line in the above if statement didn't fix it
-    // going to try gameOver() reset
     button.disabled = true
   }
 
@@ -97,7 +87,7 @@ class Game {
     } else {
       this.gameOver()
     }
-    // increment missed (point lost)
+    // increment missed (lose a point)
     this.missed++
   }
 
@@ -106,9 +96,8 @@ class Game {
    * @return {boolean} True if game has been won, false if game wasn't won
    */
   checkForWin() {
-    // if all letters have the "show" class or if there are NO "hide" classes left
+    // if there are NO "hide" classes left, game is won
     const checkHideClass = document.getElementsByClassName("hide")
-    // if there are no hide classes (checkHideClass DOM array empty)
     if (checkHideClass.length === 0) {
       return this.gameOver(true) // player wins game
     } else {
@@ -120,7 +109,6 @@ class Game {
    * @param {boolean} gameWon - Whether or not the user won the game
    */
   gameOver(gameWon) {
-    console.log("Game Over from the method")
     document.getElementById("overlay").style.display = "block"
     let gameOverMessage = document.getElementById("game-over-message")
     const changeBG = document.querySelector("#overlay")
@@ -139,27 +127,12 @@ class Game {
     prevPhrase.innerHTML = ""
 
     // Reset the button keys
-
-    // TRIED THIS TO FIX BUG, but className wasn't working as expected
-    // const keyResetFixBug = document.querySelectorAll(".key")
-    // console.log(keyResetFixBug) // NodeList(23) shouldn't there be 25 if array starts at 0???
-    // for (let i = 0; i < keyResetFixBug.length; i++) {
-    //   keyResetFixBug[i].disabled = false
-    //   console.log(keyResetFixBug[i]) // <button class="key">b</button>
-    //   keyResetFixBug.className = "key"
-    // }
-
-    // OLD WAY - with nested "for of" loops
-    // BUG - the last clicked button is disabled and leftover from previous game
-    // HACK FIX - Did an overRide in the startGame() method and the game seems to work
     const keyReset = document.querySelectorAll(".keyrow") //Nodelist of keyrow divs with key buttons
     for (const items of keyReset) {
       let drillDown = items.children // HTMLCollection of button.key, button.wrong, & button.chosen
-      console.log(drillDown)
       for (const element of drillDown) {
         element.className = "key"
         element.removeAttribute("disabled")
-        console.log(element)
       }
     }
 
