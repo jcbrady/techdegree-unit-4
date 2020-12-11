@@ -7,8 +7,7 @@ class Game {
     this.missed = 0
     this.phrases = this.createPhrases()
     /**
-     * This is the Phrase object that’s currently in play.
-     * The initial value is null.
+     * activePhrase is the Phrase object that’s currently in play.
      * Within the startGame() method, this property will be set to the Phrase object
      * returned from a call to the getRandomPhrase() method.
      */
@@ -22,16 +21,25 @@ class Game {
    * (on the active Phrase object).
    */
   startGame() {
+    // get random number phrase
     this.activePhrase = this.getRandomPhrase()
-    // addPhraseToDisplay is in the Phrase class
+    // addPhraseToDisplay (method is in the Phrase class)
     this.activePhrase.addPhraseToDisplay()
     // hide overlay div
     document.getElementById("overlay").style.display = "none"
+
+    // HACK bug fix
+    // BUG - last clicked key button from previous game is disabled in the next game
+    // this over rides it
+    const bugFix1 = document.getElementsByClassName("key")
+    for (let i = 0; i < bugFix1.length; i++) {
+      // console.log(i)
+      // console.log(bugFix1[i])
+      // bugFix1[i].className = "key" // if className resets all classes, why doesn't this reset it to key class?
+      bugFix1[i].disabled = false
+      //bugFix1[i].removeAttribute("disabled")
+    }
   }
-  /**
-   * getRandomPhrase(): this method randomly retrieves one of the phrases stored
-   * in the phrases array and returns it.
-   */
 
   /**
    * Selects random phrase from phrases property
@@ -41,21 +49,18 @@ class Game {
     const randomNum = Math.floor(Math.random() * this.phrases.length)
     return this.phrases[randomNum]
   }
+
   /**
-   * controls most of the game logic. (see notes)
+   * controls most of the game logic.
+   * button parameter is from e.target, runs every time a player clicks a button
+   * if the clicked letter = active phrase letter, add show class, else subtract a point
+   * check for a win and call the gameOver(true) if won, removeLife() if not won
    */
   handleInteraction(button) {
     console.log(button)
-    console.log(button.textContent)
-    // PSEUDO CODE: if checkletter = active phrase letter, add show class
-    // else subtract a point
-    //
-    //
-    //let keyDisabled = (checkLetter(button)
-    // call checkLetter method on the active phrase button that was clicked.
-    // if theres a match
+    // Call checkLetter method on the active phrase button that was clicked.
+    // returns a boolean. If theres a match, call showMatchedLetter
     let key = this.activePhrase.checkLetter(button.textContent)
-
     if (key) {
       this.activePhrase.showMatchedLetter(button.textContent)
       button.classList = "chosen"
@@ -68,60 +73,42 @@ class Game {
       button.classList = "wrong"
       this.removeLife()
     }
-    // disable button that was clicked and add the relevant classes
+    // disable button that was clicked
+    // BUG FIX??? // restarting game leaves the last clicked button disabled!!!
+    // putting this line in the above if statement didn't fix it
+    // going to try gameOver() reset
     button.disabled = true
   }
+
   /**
    * Increases the value of the missed property
    * Removes a life from the scoreboard
    * Checks if player has remaining lives and ends game if player is out
    */
   removeLife() {
-    console.log(this.missed)
     if (this.missed < 4) {
       const scoreboard = document.getElementById("scoreboard")
       const imageElements = scoreboard.getElementsByTagName("img")
       let currentImage = imageElements[this.missed] // increment array value with missed
-      //console.log(currentImage.src.includes("liveHeart.png")) // true
       if (currentImage.src.includes("liveHeart.png")) {
-        //console.log(currentImage)
-        //console.log(currentImage.src)
         let lostHeart = currentImage.src.replace("liveHeart.png", "lostHeart.png")
         currentImage.src = lostHeart
-        //console.log((currentImage.src = lostHeart))
-        //console.log(lostHeart)
-        //console.log(imageElements[this.missed])
-        //console.log("lostHeart (above), currentImage (below)")
-
-        //return (currentImage = lostHeart)
-        //console.log(currentImage)
       }
     } else {
-      //this.missed = 0
       this.gameOver()
     }
-
-    // for (let imageElement of imageElements) {
-    //   console.log(imageElement.src)
-    //   imageElement.src = "../images/lostHeart.png"
-    //   console.log(imageElement.src)
-    // }
+    // increment missed (point lost)
     this.missed++
   }
+
   /**
-   * Checks for winning move
+   * Checks for winning move (called by handleInteraction every time button is clicked)
    * @return {boolean} True if game has been won, false if game wasn't won
    */
-
   checkForWin() {
-    // 2 ways to check
     // if all letters have the "show" class or if there are NO "hide" classes left
-    // or if all of the number of letters in the phrase array have been used, use a counter?
-    console.log(this.activePhrase)
-    // console.log(this.activePhrase.phrase.length)
     const checkHideClass = document.getElementsByClassName("hide")
-    //console.log(checkHideClass)
-    // if there are no items in the DOM array of objects
+    // if there are no hide classes (checkHideClass DOM array empty)
     if (checkHideClass.length === 0) {
       return this.gameOver(true) // player wins game
     } else {
@@ -150,38 +137,39 @@ class Game {
     // Empty out the list items
     const prevPhrase = document.getElementById("phrase").firstElementChild // ul
     prevPhrase.innerHTML = ""
-    // Reset the buttons keys with nested for of loops
+
+    // Reset the button keys
+
+    // TRIED THIS TO FIX BUG, but className wasn't working as expected
+    // const keyResetFixBug = document.querySelectorAll(".key")
+    // console.log(keyResetFixBug) // NodeList(23) shouldn't there be 25 if array starts at 0???
+    // for (let i = 0; i < keyResetFixBug.length; i++) {
+    //   keyResetFixBug[i].disabled = false
+    //   console.log(keyResetFixBug[i]) // <button class="key">b</button>
+    //   keyResetFixBug.className = "key"
+    // }
+
+    // OLD WAY - with nested "for of" loops
+    // BUG - the last clicked button is disabled and leftover from previous game
+    // HACK FIX - Did an overRide in the startGame() method and the game seems to work
     const keyReset = document.querySelectorAll(".keyrow") //Nodelist of keyrow divs with key buttons
     for (const items of keyReset) {
       let drillDown = items.children // HTMLCollection of button.key, button.wrong, & button.chosen
+      console.log(drillDown)
       for (const element of drillDown) {
         element.className = "key"
         element.removeAttribute("disabled")
+        console.log(element)
       }
     }
+
     // Reset the hearts
     const hearts = document.querySelectorAll(".tries img")
     for (let i = 0; i < hearts.length; i++) {
       hearts[i].setAttribute("src", "images/liveHeart.png")
     }
-    /** 
-    const hearts = document.getElementsByClassName("tries") // HTMLCollection array of li.tries
-    // loop through the hearts HTMLCollection array to get the img, then the src
-    for (let i = 0; i < hearts.length; i++) {
-      let img = hearts[i].children[0] // HTMLCollection of 1 img element
-      let imgSrc = img.getAttribute("src") // seems to work BUT throws an ERROR
-      console.log(img) // logs the image source: ../images/lostHeart.png
-
-      if (imgSrc.includes("lostHeart.png")) {
-        let liveHeart = imgSrc.replace("lostHeart.png", "liveHeart.png")
-        imgSrc = liveHeart // switch images to liveHeart.png
-        console.log(liveHeart) // logs the liveHeart.png as expected
-        img.setAttribute("src", liveHeart)
-        console.log("true, url contains lostHeart")
-      }
-    }
-    */
   }
+
   /**
    * create phrases for the game and return an array.
    */
