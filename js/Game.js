@@ -78,7 +78,7 @@ class Game {
    */
   removeLife() {
     console.log(this.missed)
-    if (this.missed <= 5) {
+    if (this.missed < 4) {
       const scoreboard = document.getElementById("scoreboard")
       const imageElements = scoreboard.getElementsByTagName("img")
       let currentImage = imageElements[this.missed] // increment array value with missed
@@ -160,12 +160,17 @@ class Game {
       }
     }
     // Reset the hearts
+    const hearts = document.querySelectorAll(".tries img")
+    for (let i = 0; i < hearts.length; i++) {
+      hearts[i].setAttribute("src", "images/liveHeart.png")
+    }
+    /** 
     const hearts = document.getElementsByClassName("tries") // HTMLCollection array of li.tries
     // loop through the hearts HTMLCollection array to get the img, then the src
     for (let i = 0; i < hearts.length; i++) {
-      let img = hearts[i].children // HTMLCollection of 1 img element
-      let imgSrc = img[i].getAttribute("src") // seems to work BUT throws an ERROR
-      console.log(imgSrc) // logs the image source: ../images/lostHeart.png
+      let img = hearts[i].children[0] // HTMLCollection of 1 img element
+      let imgSrc = img.getAttribute("src") // seems to work BUT throws an ERROR
+      console.log(img) // logs the image source: ../images/lostHeart.png
 
       if (imgSrc.includes("lostHeart.png")) {
         let liveHeart = imgSrc.replace("lostHeart.png", "liveHeart.png")
@@ -175,6 +180,7 @@ class Game {
         console.log("true, url contains lostHeart")
       }
     }
+    */
   }
   /**
    * create phrases for the game and return an array.
