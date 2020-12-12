@@ -18,3 +18,10 @@ for (let i = 0; i < letterButton.length; i++) {
     game.handleInteraction(e.target)
   })
 }
+
+//const activate keys (for exceeds)
+//document.addEventListener("keydown", function (e) {
+//e.preventDefault
+//   const keyBoard = String.fromCharCode(e.keyCode).toLocaleLowerCase()
+//   game.handleInteraction(keyBoard)
+// })
